@@ -2,7 +2,7 @@
 	"name": "star_wars",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://star-wars-bk.netlify.app/",
+	"homepage": "https://bartlomiejkita.github.io/star_wars/",
 	"dependencies": {
 		"@reduxjs/toolkit": "^1.8.6",
 		"@testing-library/jest-dom": "^5.16.5",
