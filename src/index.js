@@ -1,23 +1,30 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './index.css';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./Redux/Store";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./index.css";
+import Navigation from "./pages/Navigation/Navigation";
+import NotFound from "./pages/NotFound";
 
-const container = document.getElementById('root');
+const HomePage = React.lazy(() => import("./pages/HomePage"));
+const FavoritePage = React.lazy(() => import("./pages/FavoritePage"));
+
+const container = document.getElementById("root");
 const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </React.StrictMode>
+	<React.StrictMode>
+		<Provider store={store}>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Navigation />}>
+						<Route index element={<HomePage />} />
+						<Route path="favorite" element={<FavoritePage />} />
+					</Route>
+					<Route path="*" element={<NotFound />} />
+				</Routes>
+			</BrowserRouter>
+		</Provider>
+	</React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
