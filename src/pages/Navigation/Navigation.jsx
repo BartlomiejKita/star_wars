@@ -10,6 +10,7 @@ function Navigation() {
 				<StyledLink to="/" end>
 					Home
 				</StyledLink>
+				<StyledLink to="/search">Search </StyledLink>
 				<StyledLink to="/favorite">Favorite </StyledLink>
 			</Nav>
 			<Suspense

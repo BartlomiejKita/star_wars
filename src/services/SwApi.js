@@ -8,14 +8,16 @@ export const SwApi = createApi({
 	tagTypes: ["People", "Favorite"],
 	endpoints: (builder) => ({
 		getPeople: builder.query({
-			query: () => "people",
+			query: (page = 1) => `people/?page=${page}`,
 			providesTags: ["People"],
 		}),
-		getFavorite: builder.query({
-			query: () => "people",
+		getPerson: builder.query({
+			query: (query) => `people/?search=${query}`,
 			invalidatesTags: ["Favorite"],
 		}),
 	}),
 });
 
-export const { useGetPeopleQuery, useGetFavoriteQuery} = SwApi;
+export const { useGetPeopleQuery, useGetPersonQuery} = SwApi;
+
+

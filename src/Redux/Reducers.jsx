@@ -1,18 +1,16 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { addFavorite} from "./Actions";
+import { addFavorite } from "./Actions";
 
 const initialState = {
-	favorite: [],
-	
+	favorite: false,
+	data: [],
 };
 
 export const favoriteReducer = createReducer(
 	initialState.favorite,
 	(builder) => {
-		builder.addCase(addFavorite, (_, { payload }) => {
-			return payload;
+		builder.addCase(addFavorite, (state, { payload }) => {
+			return !state;
 		});
 	}
 );
-
-

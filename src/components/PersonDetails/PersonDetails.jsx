@@ -1,6 +1,8 @@
 import { useState } from "react";
 import ReactCardFlip from "react-card-flip";
 import { Card, List, ValuesList } from "./PersonDetails.styled";
+import { addFavorite } from "../../Redux/Actions";
+import { useSelector, useDispatch } from "react-redux";
 
 const PersonDetails = ({
 	name,
@@ -12,6 +14,13 @@ const PersonDetails = ({
 	birth_year,
 	gender,
 }) => {
+	const favorite = useSelector((state) => state.favorite);
+	const dispatch = useDispatch();
+	const handleFavorite = (e) => {
+		e.stopPropagation();
+		dispatch(addFavorite(e.target.value));
+		console.log(favorite);
+	};
 	const [isFlipped, setIsFlipped] = useState(false);
 	const toggleIsFlipped = () => {
 		setIsFlipped((current) => !current);
@@ -23,6 +32,12 @@ const PersonDetails = ({
 				<ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
 					<Card onClick={toggleIsFlipped}>
 						<h2>{name}</h2>
+						{favorite ? (
+							<button onClick={handleFavorite}>Add to favorite</button>
+						) : (
+							<button onClick={handleFavorite}>Remove from favorite</button>
+						)}
+						
 					</Card>
 
 					<Card onClick={toggleIsFlipped}>
@@ -43,3 +58,7 @@ const PersonDetails = ({
 };
 
 export default PersonDetails;
+
+
+
+// remove from favorite
