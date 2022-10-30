@@ -10,7 +10,7 @@ const FavoritePage = () => {
 		<>
 			<List>
 				{favorite.map((name) => (
-					<FavoriteFetch character={name} />
+					<FavoriteFetch character={name} key={name} />
 				))}
 			</List>
 		</>
