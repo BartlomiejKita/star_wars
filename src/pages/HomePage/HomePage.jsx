@@ -26,26 +26,23 @@ const HomePage = () => {
 		);
 	} else if (isSuccess) {
 		let totalPages = Math.ceil(people.count / 10);
+		let results = people.results;
 		if (totalPages > 1) {
 			content = (
 				<>
-					<PeopleList people={people} />
+					<PeopleList people={results} />
 					<BtnWrapper>
 						{page > 1 ? (
-							<Btn onClick={() => setPage(page - 1)}>
-								Previous Page
-							</Btn>
+							<Btn onClick={() => setPage(page - 1)}>Previous Page</Btn>
 						) : null}
 						{page < totalPages ? (
-							<Btn onClick={() => setPage(page + 1)}>
-								Next page
-							</Btn>
+							<Btn onClick={() => setPage(page + 1)}>Next page</Btn>
 						) : null}
 					</BtnWrapper>
 				</>
 			);
 		} else {
-			<PeopleList people={people} />;
+			content = <PeopleList people={results} />;
 		}
 	} else if (isError) {
 		content = <div>{error.toString()}</div>;

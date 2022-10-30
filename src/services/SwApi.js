@@ -5,7 +5,7 @@ export const SwApi = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: "https://swapi.dev/api/",
 	}),
-	tagTypes: ["People", "Favorite"],
+	tagTypes: ["People", "Favorite", "Id"],
 	endpoints: (builder) => ({
 		getPeople: builder.query({
 			query: (page = 1) => `people/?page=${page}`,
@@ -18,6 +18,4 @@ export const SwApi = createApi({
 	}),
 });
 
-export const { useGetPeopleQuery, useGetPersonQuery} = SwApi;
-
-
+export const { useGetPeopleQuery, useGetPersonQuery } = SwApi;

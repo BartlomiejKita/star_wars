@@ -1,12 +1,11 @@
 import React from "react";
 import { useGetPersonQuery } from "../../services/SwApi";
-import { Input } from "./SearchPage.styled";
+import { Input, Form, NoResults } from "./SearchPage.styled";
 import { Btn } from "../HomePage/HomePage.styled";
 import PeopleList from "../../components/PeopleList/PeopleList";
 import { SpinnerWrapper } from "../Navigation/Navigation.styled";
 import Loader from "../../components/Loader";
 import { useSearchParams } from "react-router-dom";
-import { Form } from "./SearchPage.styled";
 
 const SearchPage = () => {
 	const [searchQuery, setSearchQuery] = useSearchParams();
@@ -48,9 +47,10 @@ const SearchPage = () => {
 			</SpinnerWrapper>
 		);
 	} else if (isSuccess && person.count !== 0) {
-		content = <PeopleList people={person} />;
+		let result = person.results;
+		content = <PeopleList people={result} />;
 	} else if (isSuccess) {
-		content = <div>zero results</div>;
+		content = <NoResults>No results, try again!</NoResults>;
 	} else if (isError) {
 		content = <div>{error.toString()}</div>;
 	}

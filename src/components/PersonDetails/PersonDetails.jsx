@@ -1,10 +1,11 @@
 import { useState } from "react";
 import ReactCardFlip from "react-card-flip";
-import { Card, List, ValuesList } from "./PersonDetails.styled";
-import { addFavorite } from "../../Redux/Actions";
+import { Card, List, ValuesList, Btn } from "./PersonDetails.styled";
+import { addFavorite, deleteFavorite } from "../../Redux/Actions";
 import { useSelector, useDispatch } from "react-redux";
 
 const PersonDetails = ({
+	id,
 	name,
 	height,
 	mass,
@@ -16,10 +17,13 @@ const PersonDetails = ({
 }) => {
 	const favorite = useSelector((state) => state.favorite);
 	const dispatch = useDispatch();
-	const handleFavorite = (e) => {
+	const addToFavorite = (e) => {
 		e.stopPropagation();
 		dispatch(addFavorite(e.target.value));
-		console.log(favorite);
+	};
+	const deleteFromFavorite = (e) => {
+		e.stopPropagation();
+		dispatch(deleteFavorite(e.target.value));
 	};
 	const [isFlipped, setIsFlipped] = useState(false);
 	const toggleIsFlipped = () => {
@@ -32,12 +36,15 @@ const PersonDetails = ({
 				<ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
 					<Card onClick={toggleIsFlipped}>
 						<h2>{name}</h2>
-						{favorite ? (
-							<button onClick={handleFavorite}>Add to favorite</button>
+						{favorite.includes(name) ? (
+							<Btn value={name} onClick={deleteFromFavorite}>
+								Remove from favorite
+							</Btn>
 						) : (
-							<button onClick={handleFavorite}>Remove from favorite</button>
+							<Btn value={name} onClick={addToFavorite}>
+								Add to favorite
+							</Btn>
 						)}
-						
 					</Card>
 
 					<Card onClick={toggleIsFlipped}>
@@ -58,7 +65,5 @@ const PersonDetails = ({
 };
 
 export default PersonDetails;
-
-
 
 // remove from favorite

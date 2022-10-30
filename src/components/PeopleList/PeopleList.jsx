@@ -5,7 +5,7 @@ const PeopleList = ({ people }) => {
 	return (
 		<>
 			<List>
-				{people.results.map(
+				{people.map(
 					({
 						name,
 						height,
@@ -19,6 +19,7 @@ const PeopleList = ({ people }) => {
 					}) => (
 						<PersonDetails
 							key={url}
+							id={url.replace(/[^0-9]/g, "")}
 							name={name}
 							height={height}
 							mass={mass}

@@ -16,3 +16,9 @@ export const Form = styled.form`
 	flex-wrap: wrap;
 	margin-bottom: 25px;
 `;
+
+export const NoResults = styled.div`
+	display: flex;
+	justify-content: center;
+	color: white;
+`;
