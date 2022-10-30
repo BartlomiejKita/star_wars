@@ -8,7 +8,7 @@ import Navigation from "./pages/Navigation/Navigation";
 import NotFound from "./pages/NotFound/NotFound";
 
 const HomePage = React.lazy(() => import("./pages/HomePage/HomePage"));
-const FavoritePage = React.lazy(() => import("./pages/FavoritePage"));
+const FavoritePage = React.lazy(() => import("./pages/FavoritePage/FavoritePage"));
 const SearchPage = React.lazy(() => import("./pages/SearchPage/SearchPage"));
 
 
