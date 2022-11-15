@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const SwApi = createApi({
 	reducerPath: "people",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "https://swapi.dev/api/",
+		baseUrl: "https://swapi.py4e.com/api/",
 	}),
 	tagTypes: ["People", "Favorite", "Id"],
 	endpoints: (builder) => ({
